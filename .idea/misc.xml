@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/add_alarm_detailbutton_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/alarm_item_bottom_layout.xml" value="0.1095" />
+        <entry key="app/src/main/res/drawable/alarm_item_layout.xml" value="0.117" />
+        <entry key="app/src/main/res/drawable/alarm_item_top_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/custom_checkbox_checked.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/custom_checkbox_layout.xml" value="0.161" />
+        <entry key="app/src/main/res/drawable/custom_checkbox_unchecked.xml" value="0.109" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/save_btn_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/search_edittext_layout.xml" value="0.1485" />
+        <entry key="app/src/main/res/drawable/toggle_selector.xml" value="0.227" />
+        <entry key="app/src/main/res/drawable/toggle_selector_layout.xml" value="0.169" />
+        <entry key="app/src/main/res/font/extra_bold.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_add_alarm.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_alarm_list.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_date_select.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_select_helper.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_set_sound.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/alarm_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/date_selector_radio_button_layout.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_alarm_date_selector.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
