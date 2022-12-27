@@ -25,5 +25,10 @@ class IntroActivity : AppCompatActivity() {
             val intent = Intent(this, JoinActivity::class.java)
             startActivity(intent)
         }
+
+        binding.test.setOnClickListener {
+            val intent = Intent(this, AlarmListActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
