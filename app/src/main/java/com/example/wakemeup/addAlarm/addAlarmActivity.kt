@@ -80,7 +80,6 @@ class addAlarmActivity : AppCompatActivity() {
                     // 기상도우미 번호 받아오기 및 설정 - 이름없이 번호만 입력하는 경우도 있어서 걍 번호만 받아옴
                     number = it.data?.getStringExtra("number") as String
                     binding.selectedHelper.text = number
-
                 }
             }
 
