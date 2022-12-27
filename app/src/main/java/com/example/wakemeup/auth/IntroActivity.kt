@@ -9,6 +9,7 @@ import com.example.wakemeup.databinding.ActivityIntroBinding
 
 class IntroActivity : AppCompatActivity() {
 
+
     private lateinit var binding : ActivityIntroBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
