@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/add_alarm_detailbutton_layout.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/alarm_item_bottom_layout.xml" value="0.1095" />
@@ -21,6 +22,8 @@
         <entry key="app/src/main/res/layout/activity_alarm_list.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_date_select.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_pattern.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/activity_pop_ring.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/activity_select_helper.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_set_sound.xml" value="0.1" />
         <entry key="app/src/main/res/layout/alarm_item.xml" value="0.1" />
