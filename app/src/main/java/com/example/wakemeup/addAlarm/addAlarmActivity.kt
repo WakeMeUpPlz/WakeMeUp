@@ -17,15 +17,17 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.wakemeup.AlarmDataModel
+import com.example.wakemeup.AlarmListActivity
 import com.example.wakemeup.R
 import com.example.wakemeup.databinding.ActivityAddAlarmBinding
+import java.io.Serializable
 
 
 class addAlarmActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddAlarmBinding
     lateinit var time_picker : TimePicker
-    lateinit var chosenRingtone : String
+    lateinit var chosenRingtone : Uri
     lateinit var title : String
     lateinit var dateViewArr : ArrayList<TextView>
     lateinit var savedData : AlarmDataModel
@@ -41,7 +43,7 @@ class addAlarmActivity : AppCompatActivity() {
         time_picker = binding.alarmTimeSelector
         title = binding.titleArea.text.toString()
         dateArr = arrayListOf(false,false,false,false,false,false,false)
-        chosenRingtone = ""
+        chosenRingtone = Uri.EMPTY
         number = ""
 
         dateViewArr = arrayListOf()
@@ -57,7 +59,6 @@ class addAlarmActivity : AppCompatActivity() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             {
                 if (it.resultCode == RESULT_OK) {
-
                     // 반복 요일 색깔 변경 (색깔 변경하기 - 잘안보임)
                     dateArr = it.data?.getSerializableExtra("data") as ArrayList<Boolean>
                     Toast.makeText(this, dateArr.toString(), Toast.LENGTH_SHORT).show()
@@ -76,11 +77,9 @@ class addAlarmActivity : AppCompatActivity() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             {
                 if (it.resultCode == RESULT_OK) {
-
                     // 기상도우미 번호 받아오기 및 설정 - 이름없이 번호만 입력하는 경우도 있어서 걍 번호만 받아옴
                     number = it.data?.getStringExtra("number") as String
                     binding.selectedHelper.text = number
-
                 }
             }
 
@@ -94,7 +93,7 @@ class addAlarmActivity : AppCompatActivity() {
         // 보류 -> 값 받아오는 코드만 바뀌는 것이라 데이터베이스 넣는 과정은 그대로 진행하면됨. 변수는 그대로 갈 예정
         binding.setSoundBtn.setOnClickListener {
             val intent = Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
-            intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_NOTIFICATION)
+            intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM)
             intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, "Select Tone")
             intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, null as Uri?)
             childForResult.launch(intent)
@@ -113,11 +112,13 @@ class addAlarmActivity : AppCompatActivity() {
 
         binding.saveBtn.setOnClickListener {
             save()
-            val intent = Intent(this, addAlarmActivity::class.java)
+            val intent = Intent(this, AlarmListActivity::class.java)
             intent.apply {
-                putExtra("newAlarm", savedData)
+                putExtra("newAlarm", savedData as Serializable)
             }
             setResult(RESULT_OK, intent)
+            Log.d("alarm Receiver", "save new alarm")
+
             finish()
         }
 
@@ -141,13 +142,12 @@ class addAlarmActivity : AppCompatActivity() {
                 result ->
             when (result.resultCode) {
                 RESULT_OK -> {
-                            val uri =
-                                result.data!!.getParcelableExtra<Uri>(RingtoneManager.EXTRA_RINGTONE_PICKED_URI)
-                            if (uri != null) {
-                                chosenRingtone = uri.toString()
+                    var uri = result.data!!.getParcelableExtra<Uri>(RingtoneManager.EXTRA_RINGTONE_PICKED_URI)
+                    if (uri != null) {
+                                chosenRingtone = uri
                                 Toast.makeText(
                                     this,
-                                    "ringtone=$chosenRingtone",
+                                    "$chosenRingtone",
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
@@ -161,6 +161,8 @@ class addAlarmActivity : AppCompatActivity() {
         val doN : String
         val h_tim : Int
         var hour : String
+        title = binding.titleArea.text.toString()
+
         if(time_picker.hour < 12) {
             doN = "AM"
             h_tim = time_picker.hour
@@ -178,7 +180,6 @@ class addAlarmActivity : AppCompatActivity() {
 
         val time = hour + ":" + time_picker.minute.toString()
         savedData = AlarmDataModel(dateArr,title,number,doN,true,binding.helpActiavateBtn.isChecked,chosenRingtone,time)
-
     }
 
 }

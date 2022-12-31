@@ -29,6 +29,7 @@ class alarmListAdapter (val context: Context,  val dateList: MutableList<AlarmDa
         val dOrN = view.findViewById<TextView>(R.id.dOrN)
         val isActivated = view.findViewById<ToggleButton>(R.id.activateBtn);
         val data = ArrayList<TextView>()
+
         data.add(view.findViewById<TextView>(R.id.monday))
         data.add(view.findViewById<TextView>(R.id.tuesday))
         data.add(view.findViewById<TextView>(R.id.wednesday))
