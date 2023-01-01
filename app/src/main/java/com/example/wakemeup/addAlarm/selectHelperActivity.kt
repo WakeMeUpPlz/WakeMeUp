@@ -32,22 +32,15 @@ class selectHelperActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_select_helper)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_helper)
+        setContentView(binding.root)
+
         listview = binding.contactListview
         helperNumArea = binding.helperNumArea
         searchContactArea = binding.searchInContacts
+        helperNumArea.setText(intent.getStringExtra("selected_helper"))
 
-        searchContactArea.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-            override fun afterTextChanged(editable: Editable) {
-                // input창에 문자를 입력할때마다 호출된다.
-                // search 메소드를 호출한다.
-                val text: String = searchContactArea.getText().toString()
-//                search(text)
-            }
-        })
+        var btn = binding.saveHelperBtn as Button
 
         if (checkSelfPermission(permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(permission.READ_CONTACTS), 1)
@@ -56,7 +49,15 @@ class selectHelperActivity : AppCompatActivity() {
             showData()
         }
 
-        binding.saveBtn.setOnClickListener {
+        if (checkSelfPermission(permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(permission.SEND_SMS), 2)
+            return
+        } else {
+
+        }
+
+        btn.setOnClickListener {
+            Toast.makeText(this, "toaste for show", Toast.LENGTH_SHORT).show()
             number = helperNumArea.text.toString()
             val intent = Intent(this, addAlarmActivity::class.java)
             intent.apply {
@@ -66,11 +67,25 @@ class selectHelperActivity : AppCompatActivity() {
             finish()
         }
 
+        searchContactArea.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+
+            override fun afterTextChanged(editable: Editable) {
+                // input창에 문자를 입력할때마다 호출된다.
+                // search 메소드를 호출한다.
+                val text: String = searchContactArea.getText().toString()
+//                search(text)
+            }
+        })
+
 
         binding.exitToAddAlarm.setOnClickListener {
             finish()
         }
+
     }
+
 
     fun showData() {
         cursor = contentResolver.query(
@@ -125,6 +140,9 @@ class selectHelperActivity : AppCompatActivity() {
         when (requestCode) {
             1 -> if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 showData()
+            }
+            2 -> if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this,"sms 보내기 승인이 완료되었습니다.", Toast.LENGTH_SHORT).show()
             }
         }
     }
