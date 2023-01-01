@@ -44,10 +44,7 @@ class AlarmReveiver : BroadcastReceiver() {
         var title = data.title
         var dates = data.dates
         var isActivated = data.isActivated
-        var sound = ring
-        if(sound == Uri.EMPTY) {
-            sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-        }
+        var sound = ring as Uri
 
         var mbuilder : NotificationCompat.Builder
 
@@ -96,6 +93,7 @@ class AlarmReveiver : BroadcastReceiver() {
             return
         }
 
+        RingtonePlay.playAudio(context,sound)
         //알림창 제목
         mbuilder.setContentTitle(title)
         .setSmallIcon(R.drawable.alarm)
@@ -103,7 +101,10 @@ class AlarmReveiver : BroadcastReceiver() {
         .setContentIntent(pendingIntent)
         val notification = mbuilder!!.build()
         val notificationManager = NotificationManagerCompat.from(context)
+
+
         notificationManager.notify(2, notification)
+
     }
 
 }

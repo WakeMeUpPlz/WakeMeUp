@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.example.wakemeup"
     android:installLocation="preferExternal">
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <dist:module dist:instant="true" />
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -34,9 +41,6 @@
             android:name=".addAlarm.selectHelperActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".addAlarm.setSoundActivity"
-            android:exported="false" />
         <activity
             android:name=".addAlarm.dateSelectActivity"
             android:exported="false" />
@@ -69,18 +73,22 @@
         <receiver
             android:name=".ringAlarm.AlarmReveiver"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:process=":remote">
             <intent-filter>
                 <action android:name="com.example.broadcast.ON_NEW_TOKEN_AUTO_POPUP_LIB" />
                 //1
                 <action android:name="android.intent.action.PACKAGE_FULLY_REMOVED" />
                 //2
                 <action android:name="android.intent.action.PACKAGE_DATA_CLEARED" />
+                <action android:name="com.project.ActionSetter"/>
                 //3
                 <data android:scheme="package" />
                 //4
             </intent-filter>
+
         </receiver>
+
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.example.wakemeup
 import android.app.AlarmManager
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -33,6 +34,7 @@ class AlarmListActivity : AppCompatActivity() {
     var CHANNEL_NAME = com.example.wakemeup.R.string.app_name.toString()
     private var mCalender: GregorianCalendar? = null
     private var notificationManager: NotificationManager? = null
+    private lateinit var pendingIntent : PendingIntent
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -74,14 +76,6 @@ class AlarmListActivity : AppCompatActivity() {
                 }
             }
 
-
-//        수정코드... 아직 미완성
-//        binding.alarmListView.setOnItemClickListener { parent, view, position, id ->
-//            val intent = Intent(this, addAlarmActivity::class.java)
-//            intent.putExtra("alarmData", data[position])
-//            activityResultLauncher1.launch(intent)
-//        }
-
         binding.addAlarmBtn.setOnClickListener {
             val intent = Intent(this, addAlarmActivity::class.java)
             activityResultLauncher1.launch(intent)
@@ -99,11 +93,19 @@ class AlarmListActivity : AppCompatActivity() {
     private fun start() {
 
         var calendar = Calendar.getInstance()
-//        var time = data.time.split(":")
-//        var hour = time[0].toInt()
-//        var minute = time[1].toInt()
-//        var flag = false
+        var time = newData.time.split(":")
+        var hour = time[0].toInt()
+        var minute = time[1].toInt()
+        var dorN = newData.dorN as String
 
+        if(dorN.equals("PM")) {
+            hour += 12
+        }else{
+            if(hour == 12) {
+                //오전 12시는 00시
+                hour = 0
+            }
+        }
         //AlarmReceiver에 값 전달 - 반복문으로 배열의 알람들을 가져옴
         val receiverIntent = Intent(this, AlarmReveiver::class.java)
 
@@ -114,22 +116,32 @@ class AlarmListActivity : AppCompatActivity() {
             Log.d("data Receiver", newData.ringTone.toString())
         }
 
+        Toast.makeText(this,hour.toString()+":"+minute.toString(), Toast.LENGTH_SHORT).show()
         calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 12)
-            set(Calendar.MINUTE, 44)
+            set(Calendar.HOUR_OF_DAY, hour)
+            set(Calendar.MINUTE, minute-1)
             set(Calendar.SECOND,0)
         }
 
-        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
+//        //오늘 시간이 지났으면 다음날 같은 시간 - 테스트를 위해서 주석처리. 이부분이 없으면 이전시간으로 설정시 알람 바로 울림
+//        if(calendar.before(Calendar.getInstance())) {
+//            calendar.add(Calendar.DATE, 1)
+//        }
+
+        // 나중에 이부분 함수로 빼기 - 지금은 test 함수로 빼서 listing될때 하나씩 notification 등록
+        pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
             PendingIntent.getBroadcast(this,0,receiverIntent,PendingIntent.FLAG_IMMUTABLE)
         }else{
             PendingIntent.getBroadcast(this,0,receiverIntent,PendingIntent.FLAG_UPDATE_CURRENT)
         }
-        alarmManager[AlarmManager.RTC_WAKEUP, calendar.timeInMillis] = pendingIntent
- //       alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  calendar.timeInMillis, ((AlarmManager.INTERVAL_DAY)*7), pendingIntent);
-        Log.d("alarm Receiver", "send alarm to receiver")
 
+          alarmManager[AlarmManager.RTC_WAKEUP, calendar.timeInMillis] = pendingIntent
+//        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,  calendar.timeInMillis, (AlarmManager.INTERVAL_DAY), pendingIntent);
+
+
+        Log.d("alarm Receiver", "send alarm to receiver")
+        // ------------------------------------------
     }
 
     // 화면 돌려도 list 날아가지 않도록
@@ -138,6 +150,15 @@ class AlarmListActivity : AppCompatActivity() {
 
         var alarmList = alarmList
         outState.putSerializable("alarmList", alarmList)
+    }
+
+
+    // activated 상태 바뀌면 adapter에서 확인하고 호출하기
+    fun cancelAlarm(context: Context) {
+        pendingIntent?.let {
+            val alarmManager: AlarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarmManager.cancel(it)
+        }
     }
 
 }
