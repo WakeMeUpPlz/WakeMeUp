@@ -8,7 +8,7 @@ import android.widget.*
 import com.example.wakemeup.MainActivity
 
 
-class dateSelectorRadioButtonAdapter (val context: Context, val radio_button : Int, val dateList: MutableList<String>) : BaseAdapter() {
+class dateSelectorRadioButtonAdapter (val context: Context, val radio_button : Int, val dateList: MutableList<String>, val dateIsChecked : ArrayList<Boolean>) : BaseAdapter() {
     var selectedIndex = -1
 
     override fun getCount(): Int {
@@ -34,6 +34,8 @@ class dateSelectorRadioButtonAdapter (val context: Context, val radio_button : I
         val checkArea = view.findViewById<CheckBox>(com.example.wakemeup.R.id.isChecked)
         val activity : dateSelectActivity
         activity = context as dateSelectActivity
+
+        checkArea.isChecked = dateIsChecked[position]
 
         checkArea.setOnClickListener {
 //            Toast.makeText(context, "this", Toast.LENGTH_SHORT).show()

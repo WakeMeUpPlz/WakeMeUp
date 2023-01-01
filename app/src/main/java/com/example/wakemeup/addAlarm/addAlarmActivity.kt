@@ -43,7 +43,8 @@ class addAlarmActivity : AppCompatActivity() {
         time_picker = binding.alarmTimeSelector
         title = binding.titleArea.text.toString()
         dateArr = arrayListOf(false,false,false,false,false,false,false)
-        chosenRingtone = Uri.EMPTY
+        // 설정 안하면 기본 음 재생
+        chosenRingtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
         number = ""
 
         dateViewArr = arrayListOf()
@@ -83,10 +84,12 @@ class addAlarmActivity : AppCompatActivity() {
                 }
             }
 
-
         // 완료
         binding.selectorDayBtn.setOnClickListener {
             val intent = Intent(this, dateSelectActivity::class.java)
+            intent.apply {
+                putExtra("selected dates", dateArr)
+            }
             activityResultLauncher1.launch(intent)
         }
 
@@ -96,6 +99,9 @@ class addAlarmActivity : AppCompatActivity() {
             intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM)
             intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, "Select Tone")
             intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, null as Uri?)
+            intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
+            intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true)
+
             childForResult.launch(intent)
         }
 
@@ -107,6 +113,9 @@ class addAlarmActivity : AppCompatActivity() {
         // helper 정하기
         binding.setHelperBtn.setOnClickListener{
             val intent = Intent(this, selectHelperActivity::class.java)
+            intent.apply {
+                putExtra("selected_helper", number)
+            }
             activityResultLauncher2.launch(intent)
         }
 
@@ -118,7 +127,6 @@ class addAlarmActivity : AppCompatActivity() {
             }
             setResult(RESULT_OK, intent)
             Log.d("alarm Receiver", "save new alarm")
-
             finish()
         }
 
@@ -159,17 +167,26 @@ class addAlarmActivity : AppCompatActivity() {
     private fun save(){
 
         val doN : String
-        val h_tim : Int
+        var h_tim : Int
         var hour : String
+        var minute : String
         title = binding.titleArea.text.toString()
 
         if(time_picker.hour < 12) {
             doN = "AM"
-            h_tim = time_picker.hour
+            if(time_picker.hour == 0) {
+                h_tim = 12
+            }else {
+                h_tim = time_picker.hour
+            }
         }
-        else{
+
+        else {
             doN = "PM"
             h_tim = (time_picker.hour - 12)
+            if(h_tim == 0) {
+                h_tim = 12
+            }
         }
 
         if(h_tim < 10 ) {
@@ -178,7 +195,12 @@ class addAlarmActivity : AppCompatActivity() {
             hour = h_tim.toString()
         }
 
-        val time = hour + ":" + time_picker.minute.toString()
+        if(time_picker.minute < 10) {
+            minute = "0"+time_picker.minute.toString()
+        }else
+            minute = time_picker.minute.toString()
+
+        val time = hour + ":" + minute
         savedData = AlarmDataModel(dateArr,title,number,doN,true,binding.helpActiavateBtn.isChecked,chosenRingtone,time)
     }
 

@@ -264,7 +264,6 @@
                 android:id="@+id/selectedHelper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="엄마"
                 android:textColor="@color/black"
                 android:paddingRight="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"

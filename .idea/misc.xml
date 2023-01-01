@@ -18,7 +18,7 @@
         <entry key="app/src/main/res/drawable/toggle_selector.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/toggle_selector_layout.xml" value="0.169" />
         <entry key="app/src/main/res/font/extra_bold.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_add_alarm.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_add_alarm.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_alarm_list.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_date_select.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -29,6 +29,7 @@
         <entry key="app/src/main/res/layout/alarm_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/date_selector_radio_button_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_alarm_date_selector.xml" value="0.25" />
+        <entry key="app/src/main/res/xml/network_sercurity_config.xml" value="0.16822916666666668" />
       </map>
     </option>
   </component>
