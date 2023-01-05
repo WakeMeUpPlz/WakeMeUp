@@ -28,7 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Button
+            <android.widget.Button
                 android:id="@+id/joinBtn"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -39,7 +39,7 @@
                 android:layout_marginTop="430dp"
                 android:text="회원가입" />
 
-            <Button
+            <android.widget.Button
                 android:id="@+id/loginBtn"
                 android:textSize="18dp"
                 android:textStyle="bold"

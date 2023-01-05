@@ -45,10 +45,12 @@
 
         <ToggleButton
             android:gravity="right"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:id="@+id/activateBtn"
             android:layout_width="30dp"
             android:layout_height="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/toggle_selector_layout"
             android:checked="false"
             android:text=""

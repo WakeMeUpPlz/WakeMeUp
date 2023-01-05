@@ -18,13 +18,15 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         <android.widget.Button
             android:layout_marginLeft="15sp"
             android:id="@+id/exit_to_add_alarm"
-            android:layout_width="20sp"
-            android:layout_height="20sp"
-            android:background="@drawable/x_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/close"
             android:backgroundTint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:descendantFocusability="blocksDescendants"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,6 +45,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_weight="2"
         android:layout_width="match_parent"
+        android:clickable="false"
+        android:focusable="false"
         android:layout_height="0dp">
 
 
@@ -58,7 +62,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
             android:textColor="@color/black"
             android:fontFamily="@font/nanum_gothic_extra_bold"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+            app:layout_constraintBottom_toTopOf="@+id/saveHelperBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,16 +72,18 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <android.widget.Button
             app:layout_constraintVertical_weight="0.3"
-            android:id="@+id/saveBtn"
+            android:id="@+id/saveHelperBtn"
             android:layout_width="57sp"
             android:layout_height="0dp"
             android:background="@drawable/save_btn_layout"
             android:text="저장"
             android:textSize="12sp"
+            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/helperNumArea"/>
+            app:layout_constraintTop_toBottomOf="@+id/helperNumArea"
+            android:descendantFocusability="blocksDescendants" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -90,12 +96,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         android:paddingTop="10dp"
         android:layout_marginTop="15dp">
 
-        <EditText
+        <TextView
             android:id="@+id/searchInContacts"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@drawable/add_alarm_detailbutton_layout"
-            android:hint="검색"
             android:paddingLeft="10dp"
             android:textSize="14sp"
             android:textColor="@color/black"

@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.wakemeup"
     android:installLocation="preferExternal">
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <dist:module dist:instant="true" />
+
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,10 +22,19 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WakeMeUp"
         tools:targetApi="31">
+
+        <activity
+            android:name=".ringAlarm.patternActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ringAlarm.popRingActivity"
+            android:exported="true" />
         <activity
             android:name=".AlarmListActivity"
             android:exported="false" />
@@ -24,9 +43,6 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".addAlarm.setSoundActivity"
-            android:exported="false" />
-        <activity
             android:name=".addAlarm.dateSelectActivity"
             android:exported="false" />
         <activity
@@ -34,26 +50,45 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="JoinActivity"
+            android:name=".JoinActivity"
             android:exported="false" />
         <activity
-            android:name="LoginActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name="IntroActivity"
+            android:name=".IntroActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
+
+        <receiver
+            android:name=".ringAlarm.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.example.broadcast.ON_NEW_TOKEN_AUTO_POPUP_LIB" />
+                //1
+                <action android:name="android.intent.action.PACKAGE_FULLY_REMOVED" />
+                //2
+                <action android:name="android.intent.action.PACKAGE_DATA_CLEARED" />
+                <action android:name="com.project.ActionSetter" />
+                //3
+                <data android:scheme="package" />
+                //4
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
