@@ -16,7 +16,7 @@ import com.example.wakemeup.databinding.ActivityDateSelectBinding
 class dateSelectActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityDateSelectBinding
-    public lateinit var arrayList : ArrayList<Boolean>
+    lateinit var arrayList : ArrayList<Boolean>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +26,6 @@ class dateSelectActivity : AppCompatActivity() {
         var adapter = dateSelectorRadioButtonAdapter(this, R.layout.date_selector_radio_button_layout, dateList, arrayList)
         binding.listview.adapter = adapter
 
-        //초기 값
-
-//        arrayList = arrayListOf<Boolean>(false,false,false,false,false,false,false)
 
         binding.listview.setOnItemClickListener { parent, view, position, id ->
             adapter.notifyDataSetChanged()

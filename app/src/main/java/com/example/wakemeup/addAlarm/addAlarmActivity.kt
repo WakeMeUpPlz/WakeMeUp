@@ -11,7 +11,6 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.TimePicker
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -33,11 +32,13 @@ class addAlarmActivity : AppCompatActivity() {
     lateinit var savedData : AlarmDataModel
     lateinit var activityResultLauncher1: ActivityResultLauncher<Intent>
     lateinit var activityResultLauncher2: ActivityResultLauncher<Intent>
-
     lateinit var dateArr : ArrayList<Boolean>
     lateinit var number: String
+    var alarm_id : Int = 0
+    var isActivated : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_alarm)
         time_picker = binding.alarmTimeSelector
@@ -46,7 +47,7 @@ class addAlarmActivity : AppCompatActivity() {
         // 설정 안하면 기본 음 재생
         chosenRingtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
         number = ""
-
+        isActivated = true
         dateViewArr = arrayListOf()
         dateViewArr.add(binding.monday)
         dateViewArr.add(binding.tuesday)
@@ -56,13 +57,52 @@ class addAlarmActivity : AppCompatActivity() {
         dateViewArr.add(binding.saturday)
         dateViewArr.add(binding.sunday)
 
+        alarm_id = intent.getIntExtra("number", -1) as Int
+
+
+        if(intent.getStringExtra("request")!=null && intent.getStringExtra("request").equals("modify")) {
+            var tobeModifiedData = intent.getSerializableExtra("beModifiedData") as AlarmDataModel
+            var hour = tobeModifiedData.time.split(":")[0]
+            if(tobeModifiedData.dorN == "PM") {
+                if(hour.toInt() != 12) {
+                    time_picker.hour = hour.toInt() + 12
+                }else {
+                    time_picker.hour = hour.toInt()
+                }
+            }else {
+                if(hour.toInt() == 12) {
+                    time_picker.hour = 0
+                }else {
+                    time_picker.hour = hour.toInt()
+                }
+            }
+
+            var minute = tobeModifiedData.time.split(":")[1]
+            time_picker.minute = minute.toInt()
+            binding.titleArea.setText(tobeModifiedData.title)
+            number = tobeModifiedData.helper
+            chosenRingtone = tobeModifiedData.ringTone
+            alarm_id = tobeModifiedData.id
+            dateArr = tobeModifiedData.dates
+            isActivated = tobeModifiedData.isActivated
+            binding.helpActiavateBtn.isChecked = tobeModifiedData.isHelperActivated
+            binding.selectedHelper.setText(tobeModifiedData.helper)
+
+            for(i in 0..dateArr!!.size-1) {
+                if(dateArr!!.get(i))
+                    dateViewArr[i].setTextColor(Color.BLACK)
+                else
+                    dateViewArr[i].setTextColor(Color.rgb(160, 133, 133))
+            }
+        }
+
+
         activityResultLauncher1 =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             {
                 if (it.resultCode == RESULT_OK) {
                     // 반복 요일 색깔 변경 (색깔 변경하기 - 잘안보임)
                     dateArr = it.data?.getSerializableExtra("data") as ArrayList<Boolean>
-                    Toast.makeText(this, dateArr.toString(), Toast.LENGTH_SHORT).show()
 
                     for(i in 0..dateArr!!.size-1) {
                         if(dateArr!!.get(i))
@@ -153,11 +193,6 @@ class addAlarmActivity : AppCompatActivity() {
                     var uri = result.data!!.getParcelableExtra<Uri>(RingtoneManager.EXTRA_RINGTONE_PICKED_URI)
                     if (uri != null) {
                                 chosenRingtone = uri
-                                Toast.makeText(
-                                    this,
-                                    "$chosenRingtone",
-                                    Toast.LENGTH_LONG
-                                ).show()
                             }
                         }
                         else -> {}
@@ -165,7 +200,6 @@ class addAlarmActivity : AppCompatActivity() {
         }
 
     private fun save(){
-
         val doN : String
         var h_tim : Int
         var hour : String
@@ -201,7 +235,7 @@ class addAlarmActivity : AppCompatActivity() {
             minute = time_picker.minute.toString()
 
         val time = hour + ":" + minute
-        savedData = AlarmDataModel(dateArr,title,number,doN,true,binding.helpActiavateBtn.isChecked,chosenRingtone,time)
+        savedData = AlarmDataModel(alarm_id,dateArr,title,number,doN,true,binding.helpActiavateBtn.isChecked,chosenRingtone,time)
     }
 
 }

@@ -10,7 +10,7 @@ import kotlin.collections.ArrayList
 
 @Parcelize
 data class AlarmDataModel (
-    var dates: ArrayList<Boolean>, var title : String, var helper : String,
+    var id : Int, var dates: ArrayList<Boolean>, var title : String, var helper : String,
     var dorN : String, var isActivated : Boolean,
     var isHelperActivated : Boolean,
     var ringTone : Uri, var time : String) : Serializable, Parcelable {

@@ -26,15 +26,15 @@ class selectHelperActivity : AppCompatActivity() {
     private lateinit var listview : ListView
     private lateinit var cursor : Cursor
     private lateinit var helperNumArea : EditText
-    private lateinit var searchContactArea : EditText
+    private lateinit var searchContactArea : TextView
     private lateinit var number : String
+    private lateinit var cursorForSearching : Cursor
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_helper)
         setContentView(binding.root)
-
         listview = binding.contactListview
         helperNumArea = binding.helperNumArea
         searchContactArea = binding.searchInContacts
@@ -67,17 +67,6 @@ class selectHelperActivity : AppCompatActivity() {
             finish()
         }
 
-        searchContactArea.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-
-            override fun afterTextChanged(editable: Editable) {
-                // input창에 문자를 입력할때마다 호출된다.
-                // search 메소드를 호출한다.
-                val text: String = searchContactArea.getText().toString()
-//                search(text)
-            }
-        })
 
 
         binding.exitToAddAlarm.setOnClickListener {
