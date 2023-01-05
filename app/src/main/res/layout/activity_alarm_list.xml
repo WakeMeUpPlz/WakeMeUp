@@ -21,8 +21,14 @@
         app:layout_constraintVertical_weight="1">
 
         <TextView
+            android:background="@drawable/add_alarm_detailbutton_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:text="알람을 꾹 누르면 삭제 할 수 있습니다."
+            android:gravity="center"
+            android:padding="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_height="match_parent"/>
 
         <View
             android:layout_width="wrap_content"
@@ -51,7 +57,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topBar" />
+        app:layout_constraintTop_toBottomOf="@+id/topBar"
+        android:layout_marginBottom="20dp"
+        android:descendantFocusability="blocksDescendants">
+    <requestFocus/>
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
