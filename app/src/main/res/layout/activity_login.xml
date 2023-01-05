@@ -49,6 +49,7 @@
             <TextView
                 android:text="로그인 정보"
                 android:gravity="left"
+                android:paddingLeft="10dp"
                 android:textStyle="bold"
                 android:paddingLeft="10dp"
                 android:textColor="#000000"
