@@ -47,8 +47,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:text="    로그인 정보"
+                android:text="로그인 정보"
                 android:gravity="left"
+                android:paddingLeft="10dp"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:textSize="13sp"
@@ -58,7 +59,8 @@
             <EditText
                 android:id="@+id/idArea"
                 android:layout_width="match_parent"
-                android:hint="    아이디"
+                android:hint="아이디"
+                android:paddingLeft="10dp"
                 android:layout_height="50dp"
                 style="@style/AuthEditText"
                 android:background="@drawable/textbox2"
@@ -74,7 +76,8 @@
             <EditText
                 android:id="@+id/passwordArea"
                 android:layout_width="match_parent"
-                android:hint="    비밀번호"
+                android:hint="비밀번호"
+                android:paddingLeft="10dp"
                 android:inputType="textPassword"
                 android:layout_height="50dp"
                 style="@style/AuthEditText"
