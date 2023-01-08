@@ -13,7 +13,6 @@
 * 개발 기간 
   * 2022.12.23 ~ 2023.1.8
 -----------------
-# 기능 상세 # 
 ## 회원가입, 로그인 ##
 <p align="center"><img width="269" alt="스크린샷 2023-01-08 오후 5 35 46" src="https://user-images.githubusercontent.com/77314069/211187417-7ed923d7-0f66-40f3-bd57-7b3e23299cd4.png"> <img width="270" alt="스크린샷 2023-01-08 오후 5 33 22" src="https://user-images.githubusercontent.com/77314069/211187333-33992786-3c98-4453-b29e-25decd227f09.png"></p><br> 
 - DB접근, 대조<br>   
