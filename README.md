@@ -30,8 +30,8 @@
 <img width="276" alt="스크린샷 2023-01-08 오후 6 09 39" src="https://user-images.githubusercontent.com/77314069/211188472-fbff73a8-4d0d-4b07-bf27-6d9e5b7facca.png">
 </p> 
 - DB접근, 추가<br> 
-- 안드로이드 내장 벨소리(RingTone) 사용
-- 기상도우미 설정 시 안드로이드 저장된 contacts read 가능
+- 안드로이드 내장 벨소리(RingTone) 사용<br> 
+- 기상도우미 설정 시 안드로이드 저장된 contacts read 가능<br> 
 - alarmListAdapter에서 notifcation 등록<br><br> 
 
 ## 알람 삭제 ## 
