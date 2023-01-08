@@ -27,6 +27,9 @@
 - alarmListAdapter에서 notifcation 등록 
 6. 알람 삭제  
 - DB접근, 삭제  
-- alarmListAdapter에서 notifcation 등록  
-5. 패턴 풀기 미션 
+- alarmListAda
+pter에서 notifcation 등록  
+5. 패턴 풀기 미션  
+<p align="center"><img width="271" alt="스크린샷 2023-01-08 오후 5 42 39" src="https://user-images.githubusercontent.com/77314069/211187674-18888f37-f973-487f-a260-b98822753c7c.png"></p>
+- mediaPlayer
 
