@@ -31,6 +31,6 @@
 * DB접근, 삭제  
 * alarmListAdapter에서 notifcation 등록 
 5. 패턴 풀기 미션  
-<p align="center"><img width="266" alt="스크린샷 2023-01-08 오후 5 43 37" src="https://user-images.githubusercontent.com/77314069/211187714-545bb4bf-047f-4ac5-92ac-88628d225a79.png"></p>. 
-#* mediaPlayer
+<p align="center"><img width="266" alt="스크린샷 2023-01-08 오후 5 43 37" src="https://user-images.githubusercontent.com/77314069/211187714-545bb4bf-047f-4ac5-92ac-88628d225a79.png"></p>  
+* mediaPlayer
 
