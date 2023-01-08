@@ -10,7 +10,7 @@ android {
     defaultConfig {
 
         applicationId "com.example.wakemeup"
-        minSdk 31
+        minSdk 30
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -57,3 +57,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
 }
+tasks.register("prepareKotlinBuildScriptModel"){}
