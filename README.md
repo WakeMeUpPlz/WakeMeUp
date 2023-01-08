@@ -9,6 +9,13 @@
   * 패턴풀기 : https://github.com/l7naive/pattern-lock.git
   * 클라이언트-서버 통신 : Retrofit2
 * 기능 
- * 회원가입, 로그인, 알람 추가, 삭제, 편집
+  * 회원가입, 로그인, 알람 추가, 삭제, 편집
+* 개발 기간 
+  * 2022.12.23 ~ 2023.1.8
 -----------------
+# 기능 상세 # 
+1. 회원가입, 로그인 <img width="270" alt="스크린샷 2023-01-08 오후 5 32 17" src="https://user-images.githubusercontent.com/77314069/211187264-1c7213c6-a77e-45ab-8c93-68fe55c0ee66.png"><img width="268" alt="스크린샷 2023-01-08 오후 5 33 22" src="https://user-images.githubusercontent.com/77314069/211187333-33992786-3c98-4453-b29e-25decd227f09.png">
 
+- DB접근, 대조 
+- sharedpreferences로 아이디값 저장 
+2. 
