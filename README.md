@@ -15,7 +15,7 @@
 -----------------
 # 기능 상세 # 
 1. 회원가입, 로그인  
-<p align="center"><img width="270" alt="스크린샷 2023-01-08 오후 5 32 17" src="https://user-images.githubusercontent.com/77314069/211187264-1c7213c6-a77e-45ab-8c93-68fe55c0ee66.png"><img width="268" alt="스크린샷 2023-01-08 오후 5 33 22" src="https://user-images.githubusercontent.com/77314069/211187333-33992786-3c98-4453-b29e-25decd227f09.png"></p>
+<p align="center"><img width="270" alt="스크린샷 2023-01-08 오후 5 32 17" src="https://user-images.githubusercontent.com/77314069/211187264-1c7213c6-a77e-45ab-8c93-68fe55c0ee66.png"> <img width="270" alt="스크린샷 2023-01-08 오후 5 33 22" src="https://user-images.githubusercontent.com/77314069/211187333-33992786-3c98-4453-b29e-25decd227f09.png"></p>
 - DB접근, 대조 
 - sharedpreferences로 아이디값 저장 
 2. 
