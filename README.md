@@ -7,3 +7,6 @@
   * back-end : js, node-js/visual studio code, aws
 * 사용 라이브러리 
   * 패턴풀기 : https://github.com/l7naive/pattern-lock.git
+  * 클라이언트-서버 통신 : Retrofit2
+-----------------
+
