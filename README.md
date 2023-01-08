@@ -22,6 +22,7 @@
 
 ### 알람 리스트 ###
 <p align="center"><img width="259" alt="스크린샷 2023-01-08 오후 5 45 11" src="https://user-images.githubusercontent.com/77314069/211187773-42c61902-5bf6-4f44-8602-533b4618c05b.png"></p><br>  
+- 로그인을 하면, 자동으로 해당 사용자의 리스트를 가져옵니다. <br>
 - DB접근, 업데이트<br>  
 - alarmListAdapter에서 notifcation 등록<br><br>  
 
