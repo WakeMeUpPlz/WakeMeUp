@@ -26,8 +26,12 @@
 - alarmListAdapter에서 notifcation 등록<br><br>  
 
 ## 알람 추가 ##
-<p align="center"><img width="266" alt="스크린샷 2023-01-08 오후 5 41 10" src="https://user-images.githubusercontent.com/77314069/211187614-f1ede7b0-599e-4b5c-98ac-de281838765f.png"></p> 
+<p align="center"><img width="266" alt="스크린샷 2023-01-08 오후 5 41 10" src="https://user-images.githubusercontent.com/77314069/211187614-f1ede7b0-599e-4b5c-98ac-de281838765f.png"><img width="278" alt="스크린샷 2023-01-08 오후 6 08 54" src="https://user-images.githubusercontent.com/77314069/211188492-dd110e62-d90a-4a26-9c1c-760c46940ed5.png">
+<img width="276" alt="스크린샷 2023-01-08 오후 6 09 39" src="https://user-images.githubusercontent.com/77314069/211188472-fbff73a8-4d0d-4b07-bf27-6d9e5b7facca.png">
+</p> 
 - DB접근, 추가<br> 
+- 안드로이드 내장 벨소리(RingTone) 사용
+- 기상도우미 설정 시 안드로이드 저장된 contacts read 가능
 - alarmListAdapter에서 notifcation 등록<br><br> 
 
 ## 알람 삭제 ## 
