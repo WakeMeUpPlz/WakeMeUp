@@ -22,14 +22,17 @@
 <p align="center"><img width="259" alt="스크린샷 2023-01-08 오후 5 45 11" src="https://user-images.githubusercontent.com/77314069/211187773-42c61902-5bf6-4f44-8602-533b4618c05b.png"></p><br>  
 - DB접근, 업데이트<br>  
 - alarmListAdapter에서 notifcation 등록<br><br>  
+
 ## 알람 추가 ##
 <p align="center"><img width="266" alt="스크린샷 2023-01-08 오후 5 41 10" src="https://user-images.githubusercontent.com/77314069/211187614-f1ede7b0-599e-4b5c-98ac-de281838765f.png"></p> 
 - DB접근, 추가<br> 
 - alarmListAdapter에서 notifcation 등록<br><br> 
+
 ## 알람 삭제 ## 
 <p align="center"><img width="259" alt="스크린샷 2023-01-08 오후 5 45 31" src="https://user-images.githubusercontent.com/77314069/211187787-31f321ab-c202-4ba3-96e2-89a9bf8ee1aa.png"></p> 
 - DB접근, 삭제<br>  
-- alarmListAdapter에서 notifcation 등록<br><br> 
+- alarmListAdapter에서 notifcation 등록<br><br>
+ 
 ## 패턴 풀기 미션 ##  
 <p align="center"><img width="266" alt="스크린샷 2023-01-08 오후 5 43 37" src="https://user-images.githubusercontent.com/77314069/211187714-545bb4bf-047f-4ac5-92ac-88628d225a79.png"></p><br>  
 - mediaPlayer 
